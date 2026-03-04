@@ -1,5 +1,5 @@
 
-FROM python:3.9-slim
+FROM python:3.12-slim
 
 # creating a directory
 WORKDIR /app
@@ -12,6 +12,5 @@ RUN pip install --no-cache-dir -r requirements.txt
 COPY . .
 EXPOSE 8000
 
-# to Run the application with command
-
-CMD ["python", "-m", "http.server", "8000"]
+# to run application
+CMD ["python"]

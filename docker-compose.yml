@@ -1,34 +1,23 @@
-version: '3.8'
-
 services:
-  
   web:
     build: .
     container_name: devops-web
     ports:
       - "8000:8000"
-
-
-    environment:
-      - DATABASE_URL=postgresql://postgres:uwiChantal@db:5432/mydb
+    env_file:
+      - .env
     depends_on:
       - db
     restart: unless-stopped
 
-
-  # for Database
   db:
     image: postgres:15-alpine
     container_name: devops-db
-    environment:
-      - POSTGRES_USER=postgres
-      - POSTGRES_PASSWORD=uwiChantal
-      - POSTGRES_DB=my database
-      
-
+    env_file:
+      - .env
     volumes:
       - postgres_data:/var/lib/postgresql/data
-   
+    restart: unless-stopped
 
 volumes:
   postgres_data:
